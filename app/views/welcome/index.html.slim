@@ -1,3 +1,16 @@
 .wrapper.ta-center
-  h1 Welcome#index
-  p Find me in app/views/welcome/index.html.slim
+  - if flash[:notice].present? || flash[:alert].present?
+    p.fw-bold
+      = flash[:notice]
+      = flash[:alert]
+  h1.fw-light
+    | TimeCrow
+    span.fw-bold po
+  - if user_signed_in?
+    label.textfield.ta-left
+      textarea rows="#{@md.scan("\n").count}"
+        = @md
+      span.textfield__label Markdown
+    p= link_to t('.sign_out'), :sign_out, method: :delete
+  - else
+    p= link_to t('.sign_in'), '/auth/timecrowd', class: 'btn'
