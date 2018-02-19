@@ -67,12 +67,12 @@ class User < ApplicationRecord
     grouped
   end
 
-  def to_md(link = false)
+  def to_md(link = false, with_category = true)
     md = []
     daily_report.each do |team, categories|
       md << "# #{team}"
       categories.each do |category, tasks|
-        md << "## #{category}"
+        md << "## #{category}" if with_category
         tasks.each do |id, task|
           if link
             if task[:url].present?

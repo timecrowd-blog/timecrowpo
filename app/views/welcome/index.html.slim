@@ -6,11 +6,14 @@
   h1.fw-light
     | TimeCrow
     span.fw-bold po
+  / p
+  /   = link_to 'With Link', url_for(params.permit.merge(link: 1)), class: 'btn btn--link'
+  /   = link_to 'Without Category', url_for(params.permit.merge(no_category: 1)), class: 'btn btn--link'
   - if user_signed_in?
     label.textfield.ta-left
       textarea rows="#{@md.scan("\n").count}"
         = @md
       span.textfield__label Markdown
-    p= link_to t('.sign_out'), :sign_out, method: :delete
+    p= link_to t('.sign_out'), :sign_out, method: :delete, class: 'btn btn--link'
   - else
     p= link_to t('.sign_in'), '/auth/timecrowd', class: 'btn'
