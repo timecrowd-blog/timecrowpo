@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: timecrowpo_production
-  username: timecrowpo
+  username: <%= ENV['TIMECROWPO_DATABASE_USERNAME'] %>
   password: <%= ENV['TIMECROWPO_DATABASE_PASSWORD'] %>
